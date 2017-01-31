@@ -4,9 +4,13 @@
 #include "ns3/log.h"
 #include "ns3/simulator.h"
 #include "ns3/packet.h"
+
+
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
+#include "ns3/point-to-point-module.h"
 #include "ns3/ndnSIM-module.h"
+
 #include "ns3/ndn-app-face.h"
 #include "ns3/ndn-interest.h"
 #include "ns3/ndn-data.h"
@@ -54,32 +58,50 @@ CarServerApp1::StopApplication ()
 
 void
 CarServerApp1::SendInterest ()
-{//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll
+{
 }
 
 void
 CarServerApp1::OnInterest (Ptr<const ndn::Interest> interest)
 {
-ndn::App::OnInterest (interest);
+if (interest->GetScope()==1)
+{
+if(1)
+{static int n=0; 
 
-  NS_LOG_DEBUG ("Received Interest packet for " << interest->GetName ());
+int k=0;
+static int c=0;
+ interestp1[c]=&interest;
+ 
+ if(c==1)
+{
 
+for(k=0;k<=c;k++)
+ {
+  ndn::App::OnInterest (*(interestp1[k]));
 
+  
   Ptr<ndn::Data> data = Create<ndn::Data> (Create<Packet> (1024));
-  data->SetName (Create<ndn::Name> (interest->GetName ())); // data will have the same name as Interests
+  data->SetName (Create<ndn::Name> ((*(interestp1[k]))->GetName ())); 
 
-  NS_LOG_DEBUG ("Sending Data packet for " << data->GetName ());  
+
+  
 
   m_transmittedDatas (data, this, m_face);
-
-  m_face->ReceiveData (data); 
-
+  m_face->ReceiveData (data);
 }
 
+}
+c++;
+if(c>1)
+c=0;
+}
+}
+}
 
 void
 CarServerApp1::OnData (Ptr<const ndn::Data> contentObject)
-{//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll
+{
 }
 
 } 

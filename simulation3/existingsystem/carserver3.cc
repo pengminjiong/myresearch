@@ -1,43 +1,46 @@
 
-#include "carserver.h"
+#include "carserver3.h"
 #include "ns3/ptr.h"
 #include "ns3/log.h"
 #include "ns3/simulator.h"
 #include "ns3/packet.h"
+
+
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
+#include "ns3/point-to-point-module.h"
 #include "ns3/ndnSIM-module.h"
+
 #include "ns3/ndn-app-face.h"
 #include "ns3/ndn-interest.h"
 #include "ns3/ndn-data.h"
-#include "ns3/point-to-point-module.h"
 #include "ns3/ndn-fib.h"
 #include "ns3/random-variable.h"
 
-NS_LOG_COMPONENT_DEFINE ("CarServerApp1");
+NS_LOG_COMPONENT_DEFINE ("CarServerApp4");
 
 namespace ns3 {
 
-NS_OBJECT_ENSURE_REGISTERED (CarServerApp1);
-Ptr<const ndn::Interest> *interestp1[10];
+NS_OBJECT_ENSURE_REGISTERED (CarServerApp4);
+Ptr<const ndn::Interest> *interestp4[10];
 TypeId
-CarServerApp1::GetTypeId ()
+CarServerApp4::GetTypeId ()
 {
-  static TypeId tid = TypeId ("CarServerApp1")
+  static TypeId tid = TypeId ("CarServerApp4")
     .SetParent<ndn::App> ()
-    .AddConstructor<CarServerApp1> ()
+    .AddConstructor<CarServerApp4> ()
     ;
   return tid;
 }
 
 void
-CarServerApp1::StartApplication ()
+CarServerApp4::StartApplication ()
 {
   ndn::App::StartApplication ();
 
   Ptr<ndn::Name> prefix = Create<ndn::Name> (); 
   prefix->append ("prefix"); 
-  prefix->append ("sub"); 
+  prefix->append ("sub3"); `
 
 
   Ptr<ndn::Fib> fib = GetNode ()->GetObject<ndn::Fib> ();
@@ -47,21 +50,21 @@ CarServerApp1::StartApplication ()
 }
 
 void
-CarServerApp1::StopApplication ()
+CarServerApp4::StopApplication ()
 {
   ndn::App::StopApplication ();
 }
 
 void
-CarServerApp1::SendInterest ()
-{//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll
+CarServerApp4::SendInterest ()
+{
+//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll
 }
 
 void
-CarServerApp1::OnInterest (Ptr<const ndn::Interest> interest)
+CarServerApp4::OnInterest (Ptr<const ndn::Interest> interest)
 {
 ndn::App::OnInterest (interest);
-
   NS_LOG_DEBUG ("Received Interest packet for " << interest->GetName ());
 
 
@@ -76,10 +79,9 @@ ndn::App::OnInterest (interest);
 
 }
 
-
 void
-CarServerApp1::OnData (Ptr<const ndn::Data> contentObject)
-{//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll
-}
+CarServerApp4::OnData (Ptr<const ndn::Data> contentObject)
+{
+//  this in empty because this applicaiton only works as a publisher , keep this fuction for future dynamcial controll}
 
 } 
