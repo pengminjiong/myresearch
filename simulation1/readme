@@ -1,0 +1,4 @@
+controller: the aggregation timer that controlls the time interval aggregation and tells the publsher when to publsh
+carsever: publisher
+dump-requester: subscriber
+first.cc: generates the simualtion topology
