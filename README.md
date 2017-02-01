@@ -8,4 +8,5 @@ It has two parts:
 follow possion_process(poisson2.py). Additionally, a script(poissontxt.py) that generates  a list of poisson timings that can be used for
 NS-3
 
-2. NS-3: soucr code of three simulations.(attention:this part of source code follows ndnsim's guideline)
+2. NS-3: source code of three simulations.(attention:this part of source code follows ndnsim's guideline)
+simulation source code should be included into NS-3 module(ndnsim1.0, in our simulation)  
