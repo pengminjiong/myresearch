@@ -18,7 +18,7 @@
  * Author: Alexander Afanasyev <alexander.afanasyev@ucla.edu>
  */
 
-// dumb-requester.cc
+
 
 #include "controller.h"
 #include "ns3/ptr.h"
